@@ -19,6 +19,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4  # v4 is the stable standard
 
+      - name: Step 1 - Style Check (Vale)
+        uses: errata-ai/vale-action@v2
+        with:
+          files: docs/
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:

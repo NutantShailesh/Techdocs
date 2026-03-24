@@ -1,0 +1,9 @@
+extends: substitution
+message: "Please use 'primary' or 'main' instead of '%s'."
+level: error
+ignoreCase: true
+swap:
+  master: primary
+  slave: secondary
+  whitelist: allowlist
+  blacklist: blocklist
