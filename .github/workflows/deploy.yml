@@ -1,8 +1,8 @@
-name: Deploy to GitHub Pages
-
+name: Deploy MkDocs
 on:
   push:
-    branches: ["main"]
+    branches:
+      - main  # or master
 
 permissions:
   contents: read
@@ -11,22 +11,33 @@ permissions:
 
 jobs:
   deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          pip install mkdocs-material
+          # Add any other plugins here (e.g., pip install mkdocs-minify-plugin)
+
+      - name: Build site
+        run: mkdocs build
 
       - name: Setup Pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v5
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.' # Change this to './dist' or './build' if you use a framework
+          # CRITICAL: This points to the folder MkDocs creates!
+          path: ./site
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
