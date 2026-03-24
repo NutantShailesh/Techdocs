@@ -2,7 +2,7 @@ name: Deploy MkDocs
 on:
   push:
     branches:
-      - main  # or master
+      - main
 
 permissions:
   contents: read
@@ -12,9 +12,12 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      # This forces all actions to use Node 24 and clears the deprecation warning
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4  # v4 is the stable standard
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -22,22 +25,19 @@ jobs:
           python-version: '3.x'
 
       - name: Install dependencies
-        run: |
-          pip install mkdocs-material
-          # Add any other plugins here (e.g., pip install mkdocs-minify-plugin)
+        run: pip install mkdocs-material
 
       - name: Build site
         run: mkdocs build
 
       - name: Setup Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v5 # v5 IS valid for this specific action
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v3 # v3 is the correct version here
         with:
-          # CRITICAL: This points to the folder MkDocs creates!
           path: ./site
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v5
+        uses: actions/deploy-pages@v4  # FIX: Changed from v5 back to v4
