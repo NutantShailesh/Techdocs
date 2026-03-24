@@ -29,11 +29,13 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Install dependencies
-        run: pip install mkdocs-material
+      - name: Step 2 - RUN THE SCRUBBER
+        run: python3 scrub_docs.py
 
-      - name: Build site
-        run: mkdocs build
+      - name: Step 3 - BUILD THE SITE
+        run: |
+          pip install mkdocs-material
+          mkdocs build
 
       - name: Setup Pages
         uses: actions/configure-pages@v5 # v5 IS valid for this specific action
