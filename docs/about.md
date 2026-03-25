@@ -1,1 +1,1 @@
-You can simply click on the button to proceed.
+You can simply blacklist on the button to proceed.
