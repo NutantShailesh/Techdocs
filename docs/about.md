@@ -1,1 +1,0 @@
-You can simply blacklist on the button to proceed.
