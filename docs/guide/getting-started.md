@@ -30,10 +30,8 @@ chrome://settings
 
 ### Expected: Redirected
 http://example.com
-http://github.com
 
 ### Expected: Errors
-https://nonexistent.invalid
 https://expired.badssl.com
 https://this-domain-should-never-exist-12345.com
 ``
