@@ -50,7 +50,7 @@ To make changes or add new documentation:
     ```bash
     mkdocs serve
     ```
-    View your live changes at `http://127.0.0.1:8000`.
+    View your live changes at `http://[PRIVATE_IP_HIDDEN]:8000`.
 
 2.  **Edit Content:**
     * Add or edit Markdown files in the `docs/` folder.
