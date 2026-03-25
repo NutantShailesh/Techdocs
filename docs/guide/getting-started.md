@@ -7,8 +7,8 @@ This KB is about fixing server but not really sure what server. If u have proble
 
 ## Problem
 The server just dont starting and user like <NAME> or <EMAIL> said its broken.
-UUID: <FAKE-UUID-1234-5678>
-Phone number: <PHONE-NUMBER>
+UUID: 1234-6968-836833-11
+Email: shailesh.jha@nutanix.com
 
 ## Affected Product
 All product maybe or maybe not. Not certain.
