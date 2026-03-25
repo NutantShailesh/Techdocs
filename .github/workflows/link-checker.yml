@@ -31,7 +31,7 @@ jobs:
         uses: lycheeverse/lychee-action@v2
         with:
           # Use the config file we created in Step 2!
-          args: --config lychee.toml "**/*.md" "**/*.html"
+         args: --config lychee.toml "**/*.md" "**/*.html"
         env:
           # GitHub token is required to avoid rate limits when checking GitHub links
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
