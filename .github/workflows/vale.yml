@@ -1,0 +1,20 @@
+name: Vale Linting
+on: [push, pull_request]
+
+jobs:
+  vale:
+    name: runner / vale
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run Vale
+        uses: errata-ai/vale-action@reviewdog
+        with:
+          # This tells GitHub to look at the styles folder in your repo
+          styles: styles
+          # You can limit this to specific folders like 'docs' to save time
+          files: docs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
