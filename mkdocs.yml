@@ -1,51 +1,64 @@
 # 1. Project information
-site_name: Nutanix Docs-as-code Demo Test
+site_name: Nutanix Docs-as-Code
 site_url: https://nutantshailesh.github.io/Techdocs/
-site_author: Shailesh JHa
+site_author: Shailesh Jha
+repo_url: https://github.com/NutantShailesh/Techdocs  # Adds the GitHub icon to the top right
 
 # 2. Theme Configuration
 theme:
   name: material
+  custom_dir: overrides       # Points to your custom HTML if you have any
   language: en
   
-  # Useful UI features
+  # Modern Typography (Fumadocs Look)
+  font:
+    text: Inter
+    code: JetBrains Mono
+
   features:
     - navigation.tabs          # Top menu bar
     - navigation.sections      # Grouped sidebar
     - navigation.top           # Back to top button
-    - search.suggest           # Search typing predictions
-    - search.highlight         # Highlight search results
-    - content.code.copy        # "Copy" button on code blocks
+    - navigation.instant       # Makes page loads feel like a Next.js app (no reload)
+    - navigation.tracking      # Updates URL as you scroll
+    - search.suggest           
+    - search.highlight         
+    - content.code.copy        
 
-  # Color Palette (Light/Dark mode toggle)
+  # Nutanix-inspired High Contrast Palette
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: indigo
+      primary: white
       accent: indigo
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: indigo
+      primary: black
       accent: indigo
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
 
-# 3. Markdown Extensions (Enables callouts, tabs, and better code)
+# 3. Assets
+extra_css:
+  - stylesheets/extra.css      # Make sure this file exists in docs/stylesheets/
+
+# 4. Markdown Extensions
 markdown_extensions:
-  - admonition                # For !!! info "Title" boxes
-  - pymdownx.details          # Collapsible blocks
-  - pymdownx.superfences      # Better code blocks & diagrams
-  - pymdownx.tabbed:          # Content tabs
+  - admonition                
+  - pymdownx.details          
+  - pymdownx.superfences      
+  - pymdownx.tabbed:          
       alternate_style: true
   - toc:
-      permalink: true         # Adds anchor links to headers
+      permalink: true         
 
-# 4. Navigation (Start simple, add pages here as you create them)
+# 5. Navigation (Fixed & Cleaned)
 nav:
   - Home: index.md
-  - Security Audit: PII.md  # <-- ADD THIS LINE
-  - Getting Started: guide/getting-started.md
+  - Security Audit: PII.md
+  - User Guide:
+    - Getting Started: guide/getting-started.md
