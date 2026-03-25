@@ -50,4 +50,4 @@ nav:
   - Home: index.md
   - Security Audit: PII.md
   - User Guide:
-    - Getting Started: guide/gettingstarted.md
+    - Getting Started: guide/getting-started.md
