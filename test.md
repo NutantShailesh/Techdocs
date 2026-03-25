@@ -1,1 +1,0 @@
-You can simply click on the button to proceed.
