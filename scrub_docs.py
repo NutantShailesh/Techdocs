@@ -23,10 +23,10 @@ def scrub_content(text):
         text = re.sub(pattern, replacement, text, flags=re.IGNORECASE)
     
     # 2. Redact Emails
-    text = re.sub(EMAIL_PATTERN, '[EMAIL_REDACTED]', text)
+    text = re.sub(EMAIL_PATTERN, '[name@example.com]', text)
     
     # 3. Redact UUIDs/System IDs
-    text = re.sub(UUID_PATTERN, '[ID_REDACTED]', text)
+    text = re.sub(UUID_PATTERN, '[00000000-0000-0000-0000-000000000000]', text)
     
     return text
 
