@@ -1,1 +1,1 @@
-You can simply click on the button to proceed.
+echo "We will utilize this feature to abort the process." > index.md
