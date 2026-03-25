@@ -8,7 +8,7 @@ DOCS_DIR = 'docs'
 # Regex Patterns
 EMAIL_PATTERN = r'\b([a-zA-Z0-9_.+-]+)@([a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+)\b'
 IP_PATTERN = r'\b(?:\d{1,3}\.){3}\d{1,3}\b'
-UUID_PATTERN = r'\b([0-9a-fA-F]{4})[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}([0-9a-fA-F]{4})\b'
+UUID_PATTERN = r'\b([0-9a-fA-F]{4})[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{8}([0-9a-fA-F]{4})\b'
 
 def handle_email(match):
     full_email = match.group(0)
