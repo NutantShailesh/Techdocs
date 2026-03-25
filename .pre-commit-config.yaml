@@ -1,0 +1,15 @@
+repos:
+  - repo: local
+    hooks:
+      - id: pii-scrubber
+        name: PII Scrubber
+        entry: python3 scrub_docs.py
+        language: system
+        pass_filenames: false
+        always_run: true
+
+      - id: vale-check
+        name: Vale Linter
+        entry: vale
+        language: system
+        types: [markdown]

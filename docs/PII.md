@@ -1,3 +1,3 @@
 ### System Diagnostics
-- **Support Contact:** [name@example.com]
-- **Instance ID:** [00000000-0000-0000-0000-000000000000]
+- **Support Contact:** [[[[<<EMAIL_REDACTED>>]]]]
+- **Instance ID:** [1[[[<<UUID_REDACTED>>]]]]

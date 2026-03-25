@@ -8,7 +8,7 @@ This KB is about fixing server but not really sure what server. If u have proble
 ## Problem
 The server just dont starting and user like <NAME> or <EMAIL> said its broken.
 UUID: 1234-6968-836833-11
-Email: [[name@example.com]]
+Email: [[[[[<<EMAIL_REDACTED>>]]]]]
 
 ## Affected Product
 All product maybe or maybe not. Not certain.

@@ -11,13 +11,13 @@ EMAIL_PATTERN = r'[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+'
 UUID_PATTERN = r'[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}'
 
 def scrub_content(text):
-    # 1. Redact Emails
-    # Replaces actual emails with a placeholder
-    text = re.sub(EMAIL_PATTERN, '[name@example.com]', text)
+    # 1. Redact Emails 
+    # Using 'REDACTED_EMAIL' instead of an actual @ address
+    text = re.sub(EMAIL_PATTERN, '<<EMAIL_REDACTED>>', text)
     
     # 2. Redact UUIDs/System IDs
-    # Replaces unique IDs with a zeroed-out version
-    text = re.sub(UUID_PATTERN, '[00000000-0000-0000-0000-000000000000]', text)
+    # Using a string that doesn't follow the 8-4-4-4-12 hex pattern
+    text = re.sub(UUID_PATTERN, '<<UUID_REDACTED>>', text)
     
     return text
 

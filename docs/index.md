@@ -4,7 +4,7 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
 ## Commands
 
-* `mkdocs new [dir-name]` - My master node email is [[name@example.com]]
+* `mkdocs new [dir-name]` - My master node email is [[[[[<<EMAIL_REDACTED>>]]]]]
 * `mkdocs serve` - Master the live-reloading docs server.
 * `mkdocs build` - Slave the documentation site.
 * `mkdocs -h` - Print help message and exit.
