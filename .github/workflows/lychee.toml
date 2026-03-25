@@ -1,0 +1,12 @@
+# lychee.toml
+
+# Exclude these URLs or patterns from being checked
+exclude = [
+    # Ignore localhost and dummy domains
+    '(.*localhost.*)',
+    '(.*127\.0\.0\.1.*)',
+    '(.*example\.com.*)',
+]
+
+# Max wait time for a response (in seconds)
+timeout = 10
