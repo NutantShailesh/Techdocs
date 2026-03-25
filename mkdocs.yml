@@ -47,6 +47,5 @@ markdown_extensions:
 # 4. Navigation (Start simple, add pages here as you create them)
 nav:
   - Home: index.md
-  - Guide:
-      - Getting Started: guide/getting-started.md
-  - About: about.md
+  - Security Audit: PII.md  # <-- ADD THIS LINE
+  - Getting Started: guide/getting-started.md
