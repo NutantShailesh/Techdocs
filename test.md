@@ -1,1 +1,1 @@
-echo "We will utilize this feature to abort the process." > index.md
+# We will utilize this feature to abort the process.
