@@ -1,64 +1,53 @@
-# 1. Project information
-site_name: Nutanix Docs-as-Code
+# 1. Project Information
+site_name: Nutanix Techdocs
 site_url: https://nutantshailesh.github.io/Techdocs/
 site_author: Shailesh Jha
-repo_url: https://github.com/NutantShailesh/Techdocs  # Adds the GitHub icon to the top right
+repo_url: https://github.com/NutantShailesh/Techdocs
 
 # 2. Theme Configuration
 theme:
   name: material
-  custom_dir: overrides       # Points to your custom HTML if you have any
   language: en
   
-  # Modern Typography (Fumadocs Look)
-  font:
-    text: Inter
-    code: JetBrains Mono
-
+  # Clean UI features
   features:
-    - navigation.tabs          # Top menu bar
-    - navigation.sections      # Grouped sidebar
-    - navigation.top           # Back to top button
-    - navigation.instant       # Makes page loads feel like a Next.js app (no reload)
-    - navigation.tracking      # Updates URL as you scroll
-    - search.suggest           
-    - search.highlight         
-    - content.code.copy        
+    - navigation.tabs          # Top horizontal menu bar
+    - navigation.sections      # Grouped sidebar on the left
+    - navigation.top           # "Back to top" button
+    - search.suggest           # Typing suggestions in search
+    - search.highlight         # Highlights search terms on the page
+    - content.code.copy        # Adds a "Copy" button to code snippets
 
-  # Nutanix-inspired High Contrast Palette
+  # Professional Color Palette
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: white
+      primary: indigo          # Professional corporate blue
       accent: indigo
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
-      scheme: slate
-      primary: black
+      scheme: slate           # High-contrast dark mode
+      primary: indigo
       accent: indigo
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
 
-# 3. Assets
-extra_css:
-  - stylesheets/extra.css      # Make sure this file exists in docs/stylesheets/
-
-# 4. Markdown Extensions
+# 3. Markdown Extensions (Enhances the content look)
 markdown_extensions:
-  - admonition                
-  - pymdownx.details          
-  - pymdownx.superfences      
-  - pymdownx.tabbed:          
+  - admonition                # Enables !!! info "Title" boxes
+  - pymdownx.details          # Enables collapsible "??? info" blocks
+  - pymdownx.superfences      # Better code blocks and diagrams
+  - pymdownx.tabbed:          # Content tabs (e.g., for showing Python vs. Bash)
       alternate_style: true
   - toc:
-      permalink: true         
+      permalink: true         # Adds anchor links next to all headers
 
-# 5. Navigation (Fixed & Cleaned)
+# 4. Navigation (Matches your specific folder structure)
 nav:
   - Home: index.md
   - Security Audit: PII.md
   - User Guide:
-    - Getting Started: guide/getting-started.md
+    - Getting Started: guide/gettingstarted.md
