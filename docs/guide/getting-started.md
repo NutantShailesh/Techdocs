@@ -14,7 +14,6 @@ The team completes a follow-up review at the end of each test cycle and document
 
 
 ### Expected: Successful
-https://example.com
 https://www.iana.org/domains/reserved
 
 ### Expected: Excluded (due to mailto:, localhost, or file paths)
