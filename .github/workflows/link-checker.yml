@@ -1,0 +1,43 @@
+name: Check Links (Lychee)
+
+on:
+  # 1. Run on pull requests to catch new broken links before they are merged
+  pull_request:
+    paths:
+      - '**/*.md'
+      - '**/*.html'
+  
+  # 2. Run on pushes to the main branch
+  push:
+    branches:
+      - main
+      - master
+  
+  # 3. Run on a schedule (e.g., every Monday at 8 AM UTC) to catch link rot
+  schedule:
+    - cron: '0 8 * * 1'
+
+  # 4. Allow triggering manually from the GitHub Actions UI
+  workflow_dispatch:
+
+jobs:
+  link-checker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run Lychee
+        uses: lycheeverse/lychee-action@v2
+        with:
+          # Use the config file we created in Step 2!
+          args: --config lychee.toml "**/*.md" "**/*.html"
+        env:
+          # GitHub token is required to avoid rate limits when checking GitHub links
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      - name: Fail build if there are broken links
+        # This step ensures the PR gets a red "X" if Lychee finds a broken link.
+        # It relies on the exit code from the previous step.
+        if: env.lychee_exit_code != 0
+        run: exit ${{ env.lychee_exit_code }}
