@@ -4,13 +4,13 @@
 
 - **Internal support:** shailesh@nutanix.com (This address remains visible.)
 - **General support:** help-desk@nutanix.com (This address remains visible.)
-- **External vendor:** j**@gmail.com (Mask this address.)
-- **Personal contact:** t**@yahoo.com (Mask this address.)
+- **External vendor:** j******@gmail.com (Mask this address.)
+- **Personal contact:** t******@yahoo.com (Mask this address.)
 
 ## 2. Internet Protocol address test
 
 - **Production gateway:** 8.x.x.8 (Mask this value.)
-- **Public Domain Name System (DNS) resolver:** 1.x.x.1 (Mask this value.)
+- **Public Domain Name System (DNS) resolver:** 1.x.x.4 (Mask this value.)
 - **Internal database:** Private IP address hidden.
 - **Local lab:** Private IP address hidden.
 
