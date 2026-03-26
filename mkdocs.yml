@@ -48,7 +48,7 @@ nav:
   - Home: index.md
   - PII: PII.md
   - User Guide:
-      - Getting Started: guide/getting-started.md
-      - URLS: guide/url.md
-      - Inclusive words: 'guide/inclusive words.md'
-      - UUIDs: guide/uuids.md
+      - Overview: guide/overview.md
+      - URLS: guide/testurl.md
+      - Inclusive words: 'guide/testwords.md'
+      - UUIDs: guide/testuuids.md
