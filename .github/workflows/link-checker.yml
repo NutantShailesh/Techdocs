@@ -1,15 +1,9 @@
-name: Check Links (Lychee)
+name: Check Links
 
 on:
   push:
     branches: [main, master]
-  pull_request:
-    paths:
-      - '**/*.md'
-      - '**/*.html'
-  schedule:
-    - cron: '0 8 * * 1' # Runs every Monday morning
-  workflow_dispatch:      # Allows you to click "Run" manually
+  workflow_dispatch: # Allows manual "Run" for the demo
 
 jobs:
   link-checker:
@@ -20,26 +14,10 @@ jobs:
 
       - name: Run Lychee
         uses: lycheeverse/lychee-action@v2
-        id: lychee
         with:
-          # EDGE CASE: Only pass valid tool arguments here.
-          # We check the docs folder and ignore any generated 'site' folder.
+          # Check everything in the docs folder and the root index
           args: --config lychee.toml "docs/**/*.md" "index.md"
-          
-          # EDGE CASE: Handled by the Action wrapper (Fixes your previous error)
+          # Ensures the demo doesn't crash if you have an empty file
           failIfEmpty: false
-          
-          # EDGE CASE: Creates a clean summary in the GitHub Step
-          format: markdown
-          output: lychee-report.md
-
         env:
-          # EDGE CASE: Prevents "403 Forbidden" errors from GitHub rate limits
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Fail Build on Broken Links
-        # EDGE CASE: Only fails if there are ACTUAL broken links (not just empty)
-        if: steps.lychee.outputs.exit_code != 0
-        run: |
-          echo "❌ Broken links detected. See the summary report for details."
-          exit ${{ steps.lychee.outputs.exit_code }}
