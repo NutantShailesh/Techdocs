@@ -30,8 +30,10 @@ jobs:
       - name: Run Lychee
         uses: lycheeverse/lychee-action@v2
         with:
-          # Use the config file we created in Step 2!
-         args: --config lychee.toml "**/*.md" "**/*.html"
+          # Merged arguments: uses your config file, target files, AND the empty-safety flag
+          args: --config lychee.toml --fail-if-empty=false "**/*.md" "**/*.html"
+          # Explicitly set failIfEmpty to false as requested
+          failIfEmpty: false
         env:
           # GitHub token is required to avoid rate limits when checking GitHub links
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
