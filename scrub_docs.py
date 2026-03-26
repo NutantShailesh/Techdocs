@@ -19,8 +19,7 @@ def handle_email(match):
     if domain_part.lower() == 'nutanix.com':
         return full_email
     
-    # 2. Mask other emails (e.g., s***a@gmail.com)
-    # We use '*' so it no longer matches the EMAIL_PATTERN (no infinite loop!)
+    # 2. Mask other emails
     masked_user = f"{user_part[0]}***{user_part[-1]}" if len(user_part) > 2 else "***"
     return f"{masked_user}@{domain_part}"
 
@@ -32,21 +31,19 @@ def handle_ip(match):
         if ip_obj.is_private:
             return "[PRIVATE_IP_HIDDEN]"
         
-        # 4. Public IPs -> Partial Masking (e.g., 8.x.x.8)
+        # 4. Public IPs -> Partial Masking
         parts = ip_str.split('.')
         return f"{parts[0]}.x.x.{parts[3]}"
     except ValueError:
         return ip_str
 
 def handle_uuid(match):
-    # 5. Mask UUIDs (e.g., 550e...0000)
-    # This structure breaks the 8-4-4-4-12 pattern, so it won't be re-scrubbed.
+    # 5. Mask UUIDs
     start = match.group(1)
     end = match.group(2)
     return f"{start}****-****-****-{end}"
 
 def scrub_content(text):
-    # Apply the handlers
     text = re.sub(EMAIL_PATTERN, handle_email, text)
     text = re.sub(IP_PATTERN, handle_ip, text)
     text = re.sub(UUID_PATTERN, handle_uuid, text)
@@ -66,13 +63,23 @@ def walk_and_scrub():
                 with open(file_path, 'r', encoding='utf-8') as f:
                     content = f.read()
                 
+                # --- FIXED INDENTATION BELOW ---
                 clean_content = scrub_content(content)
                 
                 if content != clean_content:
+                    # Logic to count ONLY actual changes (skipping Nutanix emails)
+                    all_emails = re.findall(EMAIL_PATTERN, content)
+                    external_emails = [e for e in all_emails if e[1].lower() != 'nutanix.com']
+                    
+                    diff_count = len(external_emails) + \
+                                 len(re.findall(IP_PATTERN, content)) + \
+                                 len(re.findall(UUID_PATTERN, content))
+                    
                     with open(file_path, 'w', encoding='utf-8') as f:
                         f.write(clean_content)
-                    print(f"✅ Sanitized: {file_path}")
+                    print(f"✅ Sanitized: {file_path} ({diff_count} items hidden)")
                     count += 1
+                    
     print(f"✨ Finished! {count} files were processed.")
 
 if __name__ == "__main__":

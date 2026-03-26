@@ -1,0 +1,24 @@
+extends: existence
+message: "Avoid using '%s'. Consider using more inclusive or technical alternatives (e.g., 'primary/secondary', 'stop/cancel', 'allowlist/denylist')."
+level: error
+ignorecase: true
+# Using word boundaries (\b) to ensure we don't flag words like 'handle' (contains 'male')
+tokens:
+  - \bslave\b
+  - \bmaster\b
+  - \babort\b
+  - \bblack\b
+  - \bwhite\b
+  - \bmilitar\w*
+  - \bmale\b
+  - \bfemale\b
+  - \bhang\b
+  - \bkill\b
+  - \bthumb\b
+  - \bsegregat\w*
+  - \bdummy\b
+  - \bman-in-the-middle\b
+  - \bman in the middle\b
+  - \bnative\b
+  - \bsanity\b
+  - \binvalid\b
