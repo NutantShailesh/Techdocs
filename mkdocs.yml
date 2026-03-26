@@ -48,6 +48,9 @@ markdown_extensions:
 # 4. Navigation (Matches your specific folder structure)
 nav:
   - Home: index.md
-  - Security Audit: PII.md
+  - PII: PII.md
   - User Guide:
     - Getting Started: guide/getting-started.md
+    URLS: guide/urls.md
+    Inclusive words: guide/inclusive words.md
+    UUIDs: guide/uuids.md
