@@ -9,48 +9,46 @@ theme:
   name: material
   language: en
   
-  # Clean UI features
   features:
-    - navigation.tabs          # Top horizontal menu bar
-    - navigation.sections      # Grouped sidebar on the left
-    - navigation.top           # "Back to top" button
-    - search.suggest           # Typing suggestions in search
-    - search.highlight         # Highlights search terms on the page
-    - content.code.copy        # Adds a "Copy" button to code snippets
+    - navigation.tabs          
+    - navigation.sections      
+    - navigation.top           
+    - search.suggest           
+    - search.highlight         
+    - content.code.copy        
 
-  # Professional Color Palette
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: indigo          # Professional corporate blue
+      primary: indigo          
       accent: indigo
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
-      scheme: slate           # High-contrast dark mode
+      scheme: slate           
       primary: indigo
       accent: indigo
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
 
-# 3. Markdown Extensions (Enhances the content look)
+# 3. Markdown Extensions
 markdown_extensions:
-  - admonition                # Enables !!! info "Title" boxes
-  - pymdownx.details          # Enables collapsible "??? info" blocks
-  - pymdownx.superfences      # Better code blocks and diagrams
-  - pymdownx.tabbed:          # Content tabs (e.g., for showing Python vs. Bash)
+  - admonition                
+  - pymdownx.details          
+  - pymdownx.superfences      
+  - pymdownx.tabbed:          
       alternate_style: true
   - toc:
-      permalink: true         # Adds anchor links next to all headers
+      permalink: true         
 
-# 4. Navigation (Matches your specific folder structure)
+# 4. Navigation (FIXED INDENTATION)
 nav:
   - Home: index.md
   - PII: PII.md
   - User Guide:
-    - Getting Started: guide/getting-started.md
-    URLS: guide/url.md
-    Inclusive words: guide/inclusive words.md
-    UUIDs: guide/uuids.md
+      - Getting Started: guide/getting-started.md
+      - URLS: guide/url.md
+      - Inclusive words: 'guide/inclusive words.md'
+      - UUIDs: guide/uuids.md
