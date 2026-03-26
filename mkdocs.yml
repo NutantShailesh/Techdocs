@@ -51,4 +51,4 @@ nav:
       - Overview: guide/overview.md
       - URLS: guide/testurl.md
       - Inclusive words: 'guide/testwords.md'
-      - UUIDs: guide/testuuids.md
+      - UUIDs: guide/testuuid.md
