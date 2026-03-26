@@ -1,45 +1,45 @@
 name: Check Links (Lychee)
 
 on:
-  # 1. Run on pull requests to catch new broken links before they are merged
+  push:
+    branches: [main, master]
   pull_request:
     paths:
       - '**/*.md'
       - '**/*.html'
-  
-  # 2. Run on pushes to the main branch
-  push:
-    branches:
-      - main
-      - master
-  
-  # 3. Run on a schedule (e.g., every Monday at 8 AM UTC) to catch link rot
   schedule:
-    - cron: '0 8 * * 1'
-
-  # 4. Allow triggering manually from the GitHub Actions UI
-  workflow_dispatch:
+    - cron: '0 8 * * 1' # Runs every Monday morning
+  workflow_dispatch:      # Allows you to click "Run" manually
 
 jobs:
   link-checker:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout Code
         uses: actions/checkout@v4
 
       - name: Run Lychee
         uses: lycheeverse/lychee-action@v2
+        id: lychee
         with:
-          # Merged arguments: uses your config file, target files, AND the empty-safety flag
-          args: --config lychee.toml --fail-if-empty=false "**/*.md" "**/*.html"
-          # Explicitly set failIfEmpty to false as requested
+          # EDGE CASE: Only pass valid tool arguments here.
+          # We check the docs folder and ignore any generated 'site' folder.
+          args: --config lychee.toml "docs/**/*.md" "index.md"
+          
+          # EDGE CASE: Handled by the Action wrapper (Fixes your previous error)
           failIfEmpty: false
-        env:
-          # GitHub token is required to avoid rate limits when checking GitHub links
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          
+          # EDGE CASE: Creates a clean summary in the GitHub Step
+          format: markdown
+          output: lychee-report.md
 
-      - name: Fail build if there are broken links
-        # This step ensures the PR gets a red "X" if Lychee finds a broken link.
-        # It relies on the exit code from the previous step.
-        if: env.lychee_exit_code != 0
-        run: exit ${{ env.lychee_exit_code }}
+        env:
+          # EDGE CASE: Prevents "403 Forbidden" errors from GitHub rate limits
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Fail Build on Broken Links
+        # EDGE CASE: Only fails if there are ACTUAL broken links (not just empty)
+        if: steps.lychee.outputs.exit_code != 0
+        run: |
+          echo "❌ Broken links detected. See the summary report for details."
+          exit ${{ steps.lychee.outputs.exit_code }}

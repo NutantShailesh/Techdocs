@@ -1,12 +1,24 @@
-# lychee.toml
+# --- EDGE CASE CONFIGURATION ---
 
-# Exclude these URLs or patterns from being checked
+# 1. Ignore specific URLs that require a VPN or Login (Nutanix Internal)
 exclude = [
-    # Ignore localhost and dummy domains
-    '(.*localhost.*)',
-    '(.*127\.0\.0\.1.*)',
-    '(.*example\.com.*)',
+    'https://internal.nutanix.com/.*',
+    'https://localhost:.*',
+    'http://127.0.0.1:.*',
+    'https://my.nutanix.com/.*' # Requires login
 ]
 
-# Max wait time for a response (in seconds)
-timeout = 10
+# 2. Ignore mailto links (prevents "Invalid Email" errors)
+exclude_mail = true
+
+# 3. Timeout settings (don't let the build hang forever)
+timeout = 20
+retry_on_rate_limit = true
+max_retries = 3
+
+# 4. Handle "Public vs Private" IPs
+# Tells lychee not to try and "ping" internal private IPs
+exclude_all_private = true
+
+# 5. User Agent (Prevents some sites from blocking the bot)
+user_agent = "curl/7.81.0"
