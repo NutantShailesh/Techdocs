@@ -3,7 +3,7 @@ name: Check Links
 on:
   push:
     branches: [main, master]
-  workflow_dispatch: # Allows manual "Run" for the demo
+  workflow_dispatch: 
 
 jobs:
   link-checker:
@@ -15,9 +15,13 @@ jobs:
       - name: Run Lychee
         uses: lycheeverse/lychee-action@v2
         with:
-          # Check everything in the docs folder and the root index
-          args: --config lychee.toml "docs/**/*.md" "index.md"
-          # Ensures the demo doesn't crash if you have an empty file
+          # We define the rules DIRECTLY here so we don't need lychee.toml
+          args: >
+            --verbose
+            --no-progress
+            --exclude-mail
+            --exclude-all-private
+            "./**/*.md"
           failIfEmpty: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
