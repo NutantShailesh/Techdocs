@@ -3,7 +3,7 @@ name: Check Links
 on:
   push:
     branches: [main, master]
-  workflow_dispatch: 
+  workflow_dispatch: # Allows you to trigger the test manually for the demo
 
 jobs:
   link-checker:
@@ -15,8 +15,10 @@ jobs:
       - name: Run Lychee
         uses: lycheeverse/lychee-action@v2
         with:
-          # We use the config file for the "Logic" and the args for the "Files"
-          args: --config lychee.toml --verbose --no-progress "**/*.md"
+          # --config lychee.toml: Use your custom Nutanix rules
+          # --verbose: Show every link being checked in the logs
+          # . : Scan the entire repository for links
+          args: --config lychee.toml --verbose --no-progress .
           failIfEmpty: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
