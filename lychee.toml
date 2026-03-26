@@ -1,6 +1,11 @@
-# --- MINIMAL DEMO CONFIG ---
+# --- FINAL DEMO CONFIG ---
 
-# 1. Ignore Internal/VPN/Localhost
+# 1. THE "CATCH-ALL" SETTING
+# Finds URLs even if they aren't in Markdown [brackets](link)
+include_verbatim = true
+
+# 2. IGNORE INTERNAL/VPN LINKS
+# Prevents false negatives for links that only work on the Nutanix VPN
 exclude = [
     'https://internal.nutanix.com/.*',
     'https://localhost:.*',
@@ -8,10 +13,10 @@ exclude = [
     'https://my.nutanix.com/.*'
 ]
 
-# 2. Skip emails and private network IPs
+# 3. PROTOCOL & SECURITY
 include_mail = false
 exclude_all_private = true
 
-# 3. Settings to prevent timeouts
+# 4. PERFORMANCE
 timeout = 20
 max_retries = 2
